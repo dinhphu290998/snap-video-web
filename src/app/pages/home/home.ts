@@ -44,7 +44,7 @@ export class Home implements OnInit {
   // Lắng nghe sự kiện thay đổi kích thước màn hình
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.checkConsole();
+    // this.checkConsole();
   }
   checkConsole() {
     const hasTouch =
