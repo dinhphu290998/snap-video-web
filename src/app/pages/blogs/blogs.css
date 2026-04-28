@@ -1,0 +1,139 @@
+.blog-page {
+  background-color: #020617;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.glow-bg {
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.blog-header h1 {
+  font-size: 3.5rem;
+  margin: 20px 0;
+  font-weight: 900;
+}
+
+.blog-header h1 span { color: #38bdf8; }
+
+.badge {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  padding: 6px 16px;
+  border-radius: 50px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+/* Card Chung */
+.card {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 32px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #38bdf8;
+}
+
+/* Featured Post */
+.featured-post {
+  margin-bottom: 40px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.img-wrap {
+  overflow: hidden;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.card:hover .img-wrap img { transform: scale(1.05); }
+
+.post-content {
+  padding: 40px;
+}
+
+.category {
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.post-content h2, .post-content h3 {
+  margin: 15px 0;
+}
+
+.post-content a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.post-content p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.meta {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.post-item .img-wrap { height: 220px; }
+.post-item .post-content { padding: 30px; }
+
+.read-more {
+  color: #38bdf8 !important;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .blog-header h1 { font-size: 2.5rem; }
+}

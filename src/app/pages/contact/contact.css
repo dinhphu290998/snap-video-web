@@ -1,0 +1,167 @@
+.contact-page {
+  background-color: #020617; /* Nền tối sâu */
+  color: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 100px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.badge {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 24px 0;
+}
+
+.header h1 span {
+  color: #38bdf8;
+}
+
+/* Bento Layout */
+.bento-layout {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 32px; /* Khoảng cách giữa card trái và card phải */
+}
+
+/* Card chính */
+.card {
+  background-color: #0f172a; /* Màu nền card */
+  border: 1px solid #1e293b;
+  border-radius: 32px;
+  padding: 48px; /* Padding cực rộng cho card */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Tối ưu khoảng cách trong Form */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px; /* Khoảng cách giữa 2 ô trên cùng hàng */
+  margin-bottom: 30px;
+}
+
+.field-group {
+  margin-bottom: 30px; /* Khoảng cách giữa các hàng của form */
+}
+
+.field-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 12px; /* Khoảng cách từ label xuống ô input */
+}
+
+/* Tối ưu ô Input/Select/Textarea */
+.field-group input, 
+.field-group select, 
+.field-group textarea {
+  width: 100%;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 16px 20px; /* Padding bên trong ô nhập liệu */
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.field-group input:focus, 
+.field-group textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  background-color: #1e293b;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+}
+
+/* Nút bấm */
+.form-footer {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #ffffff;
+  border: none;
+  padding: 18px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+}
+
+.btn-primary:disabled {
+  background: #334155;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+/* Cột phải */
+.side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-mini {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.info-mini .icon {
+  width: 56px;
+  height: 56px;
+  background: #1e293b;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.text-info h4 { margin: 0; color: #38bdf8; font-size: 1.1rem; }
+.text-info p { margin: 6px 0 0; color: #94a3b8; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .bento-layout { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .card { padding: 32px 24px; }
+  .header h1 { font-size: 2.5rem; }
+}

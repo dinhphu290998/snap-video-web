@@ -1,0 +1,29 @@
+<div class="detail-page" *ngIf="post">
+  <div class="glow-bg"></div>
+
+  <article class="container">
+    <a routerLink="/blogs" class="back-btn">← Quay lại danh sách</a>
+
+    <header class="post-header">
+      <span class="category-tag">{{ post.category }}</span>
+      <h1>{{ post.title }}</h1>
+      <div class="post-meta">
+        <span>Đăng ngày: {{ post.date }}</span> • <span>Tác giả: SnapVideo Team</span>
+      </div>
+    </header>
+
+    <div class="featured-image">
+      <img [src]="post.image" [alt]="post.title">
+    </div>
+
+    <div class="post-body" [innerHTML]="post.content"></div>
+
+    <footer class="post-footer">
+      <div class="cta-box">
+        <h3>Bạn muốn tải video ngay bây giờ?</h3>
+        <p>Sử dụng công cụ của chúng tôi để tải video TikTok, Facebook không logo miễn phí.</p>
+        <a routerLink="/" class="btn-main">Thử ngay SnapVideo</a>
+      </div>
+    </footer>
+  </article>
+</div>

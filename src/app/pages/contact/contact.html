@@ -1,0 +1,68 @@
+<div class="contact-page">
+  <div class="container">
+    
+    <header class="header">
+      <span class="badge">Contact Support</span>
+      <h1>Gửi thông tin cho <span>SnapVideo</span></h1>
+      <p>Chúng tôi sẽ phản hồi bạn trong vòng 24 giờ làm việc.</p>
+    </header>
+
+    <div class="bento-layout">
+      <div class="card form-card">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          
+          <div class="form-row">
+            <div class="field-group">
+              <label>Tên của bạn</label>
+              <input type="text" formControlName="name" placeholder="Nguyễn Văn A">
+            </div>
+            <div class="field-group">
+              <label>Email liên hệ</label>
+              <input type="email" formControlName="email" placeholder="name@company.com">
+            </div>
+          </div>
+          
+          <div class="field-group">
+            <label>Vấn đề bạn đang gặp phải</label>
+            <select formControlName="subject">
+              <option value="">Chọn một mục...</option>
+              <option value="tech">Lỗi tải video</option>
+              <option value="ads">Hợp tác / Quảng cáo</option>
+              <option value="other">Vấn đề khác</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label>Nội dung chi tiết</label>
+            <textarea formControlName="message" rows="6" placeholder="Mô tả chi tiết lỗi hoặc ý tưởng của bạn tại đây..."></textarea>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" [disabled]="contactForm.invalid" class="btn-primary">
+              Gửi tin nhắn <span class="icon">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="side-column">
+        <div class="card info-mini">
+          <div class="icon">📧</div>
+          <div class="text-info">
+            <h4>Email Support</h4>
+            <p>support@snapvideo.app</p>
+          </div>
+        </div>
+
+        <div class="card info-mini">
+          <div class="icon">💬</div>
+          <div class="text-info">
+            <h4>Telegram</h4>
+            <p>@SnapVideo_Support</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

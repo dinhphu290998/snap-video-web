@@ -1,0 +1,168 @@
+.terms-page {
+  background-color: #020617; /* Đen sâu */
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hiệu ứng hào quang nền */
+.glow-bg {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.badge {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 24px 0;
+  letter-spacing: -1px;
+}
+
+.header h1 span {
+  color: #38bdf8;
+}
+
+.header p {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Bento Grid */
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Card Styling */
+.card {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 32px;
+  padding: 40px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #38bdf8;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: #38bdf8;
+  margin-bottom: 16px;
+}
+
+.card p {
+  color: #94a3b8;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Custom Card Sizes */
+.card-hero {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  display: flex;
+  align-items: center;
+}
+
+.card-hero h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.icon-wrap {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.card-wide {
+  grid-column: span 2;
+}
+
+.content-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.visual-alert {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #38bdf8;
+  opacity: 0.1;
+}
+
+/* Footer */
+.terms-footer {
+  text-align: center;
+  margin-top: 60px;
+  color: #64748b;
+}
+
+.terms-footer a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .terms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .terms-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-hero, .card-wide {
+    grid-column: span 1;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  .card {
+    padding: 30px;
+  }
+}
