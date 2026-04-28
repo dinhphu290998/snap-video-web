@@ -6,7 +6,7 @@ export class VideoService {
 
   // ⚠️ KHÔNG PHẢI SECRET BẢO MẬT
   // chỉ là "client identifier logic"
-  private CLIENT_ID = 'snapvideo-web-client';
+  private CLIENT_ID = 'snapvideo-shared-secret';
 
   private createPayload(url: string) {
     const timestamp = Date.now();

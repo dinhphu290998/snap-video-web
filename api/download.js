@@ -10,6 +10,8 @@ const usedNonce = new Set();
 function verifyRequest(url, timestamp, nonce, signature) {
     const SECRET = process.env.SERVER_SECRET;
 
+    console.log(SECRET);
+
     if (!SECRET) return false;
 
     // chống replay
