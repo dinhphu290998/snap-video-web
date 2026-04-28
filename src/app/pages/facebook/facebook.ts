@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './facebook.css',
 })
 export class Facebook {
-// --- KHAI BÁO BIẾN (Để không bị lỗi ở HTML) ---
+  // --- KHAI BÁO BIẾN (Để không bị lỗi ở HTML) ---
   url: string = '';
   result: any = null;
   loading: boolean = false;
@@ -44,21 +44,43 @@ export class Facebook {
   onResize(event: any) {
     this.checkConsole();
   }
-
   checkConsole() {
+    const screenWidth = window.innerWidth;
+    const hasTouch =
+      'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    // Phone: màn hình nhỏ + touch
+    const isPhone = screenWidth <= 768 && hasTouch;
+
+    // Tablet: màn hình vừa + touch
+    const isTablet =
+      screenWidth > 768 &&
+      screenWidth <= 1024 &&
+      hasTouch;
+
+    // Nếu phone hoặc tablet thì bỏ qua
+    if (isPhone || isTablet) {
+      this.isDevToolsOpen = false;
+      return;
+    }
+
+    // Chỉ desktop/laptop mới check
     const threshold = 160;
-    const widthDiff = window.outerWidth - window.innerWidth > threshold;
-    const heightDiff = window.outerHeight - window.innerHeight > threshold;
+
+    const widthDiff =
+      window.outerWidth - window.innerWidth > threshold;
+
+    const heightDiff =
+      window.outerHeight - window.innerHeight > threshold;
 
     if (widthDiff || heightDiff) {
       this.isDevToolsOpen = true;
-      this.loading = false; // Dừng mọi tiến trình đang chạy
-      console.clear();      // Xóa dấu vết API
+      this.loading = false;
+      console.clear();
     } else {
       this.isDevToolsOpen = false;
     }
   }
-
   // --- HÀM TẢI VIDEO ---
   async download() {
     if (this.isDevToolsOpen) {
@@ -125,16 +147,16 @@ export class Facebook {
   }
 
   downloadVideo(url: string, title?: string) { if (!url) return; const fileName = (title ? title.replace(/[\\/:*?"<>|]/g, '').trim() : 'video') + '.mp4'; this.http.get(url, { responseType: 'blob' }).subscribe({ next: (blob) => { const blobUrl = window.URL.createObjectURL(blob); const a = this.document.createElement('a'); a.href = blobUrl; a.download = fileName; a.style.display = 'none'; this.document.body.appendChild(a); a.click(); a.remove(); window.URL.revokeObjectURL(blobUrl); }, error: () => { alert('Không thể tải video. Server chặn tải trực tiếp.'); } }); }
-  
+
   // --- TỐI ƯU SEO CHO TAB FACEBOOK ---
   updateSEOForFacebook() {
     // 1. Tiêu đề tập trung từ khóa trọng tâm
     this.title.setTitle('Tải Video Facebook (FB) Không Logo, Chất Lượng HD - SnapVideo');
 
     // 2. Meta Description chứa từ khóa phụ và lời kêu gọi hành động
-    this.meta.updateTag({ 
-      name: 'description', 
-      content: 'Công cụ tải video Facebook trực tuyến tốt nhất. Hỗ trợ tải clip FB, Reels, video riêng tư chất lượng Full HD, 2K, 4K không dính logo hoàn toàn miễn phí.' 
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Công cụ tải video Facebook trực tuyến tốt nhất. Hỗ trợ tải clip FB, Reels, video riêng tư chất lượng Full HD, 2K, 4K không dính logo hoàn toàn miễn phí.'
     });
 
     // 3. Cập nhật JSON-LD Schema chi tiết hơn cho công cụ Web
@@ -146,10 +168,10 @@ export class Facebook {
       "url": "https://yourdomain.com/facebook", // Thay bằng link thực tế của bạn
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
-      "offers": { 
-        "@type": "Offer", 
-        "price": "0", 
-        "priceCurrency": "VND" 
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
       },
       "description": "Tải video từ Facebook về máy tính, điện thoại nhanh chóng với độ phân giải cao nhất."
     };

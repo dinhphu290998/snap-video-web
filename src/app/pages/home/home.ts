@@ -47,21 +47,41 @@ export class Home implements OnInit {
   onResize(event: any) {
     this.checkConsole();
   }
-
   checkConsole() {
-    const threshold = 160;
-    const widthDiff = window.outerWidth - window.innerWidth > threshold;
-    const heightDiff = window.outerHeight - window.innerHeight > threshold;
+    const hasTouch =
+      'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    if (widthDiff || heightDiff) {
+    const screenWidth = window.innerWidth;
+
+    const threshold = 160;
+
+    const widthDiff =
+      window.outerWidth - window.innerWidth > threshold;
+
+    const heightDiff =
+      window.outerHeight - window.innerHeight > threshold;
+
+    const devToolsDetected = widthDiff || heightDiff;
+
+    // Mobile thật (điện thoại/tablet thật)
+    const isRealMobile =
+      hasTouch && screenWidth <= 1024 && !devToolsDetected;
+
+    // Nếu là mobile thật thì bỏ qua check
+    if (isRealMobile) {
+      this.isDevToolsOpen = false;
+      return;
+    }
+
+    // Desktop hoặc DevTools responsive mode vẫn check bình thường
+    if (devToolsDetected) {
       this.isDevToolsOpen = true;
-      this.loading = false; // Dừng mọi tiến trình đang chạy
-      console.clear();      // Xóa dấu vết API
+      this.loading = false;
+      console.clear();
     } else {
       this.isDevToolsOpen = false;
     }
   }
-
   // --- HÀM TẢI VIDEO ---
   async download() {
     if (this.isDevToolsOpen) {

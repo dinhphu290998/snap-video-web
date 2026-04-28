@@ -45,21 +45,43 @@ export class Xiaohongshu {
   onResize(event: any) {
     this.checkConsole();
   }
-
   checkConsole() {
+    const screenWidth = window.innerWidth;
+    const hasTouch =
+      'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    // Phone: màn hình nhỏ + touch
+    const isPhone = screenWidth <= 768 && hasTouch;
+
+    // Tablet: màn hình vừa + touch
+    const isTablet =
+      screenWidth > 768 &&
+      screenWidth <= 1024 &&
+      hasTouch;
+
+    // Nếu phone hoặc tablet thì bỏ qua
+    if (isPhone || isTablet) {
+      this.isDevToolsOpen = false;
+      return;
+    }
+
+    // Chỉ desktop/laptop mới check
     const threshold = 160;
-    const widthDiff = window.outerWidth - window.innerWidth > threshold;
-    const heightDiff = window.outerHeight - window.innerHeight > threshold;
+
+    const widthDiff =
+      window.outerWidth - window.innerWidth > threshold;
+
+    const heightDiff =
+      window.outerHeight - window.innerHeight > threshold;
 
     if (widthDiff || heightDiff) {
       this.isDevToolsOpen = true;
-      this.loading = false; // Dừng mọi tiến trình đang chạy
-      console.clear();      // Xóa dấu vết API
+      this.loading = false;
+      console.clear();
     } else {
       this.isDevToolsOpen = false;
     }
   }
-
   // --- HÀM TẢI VIDEO ---
   async download() {
     if (this.isDevToolsOpen) {
