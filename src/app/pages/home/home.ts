@@ -81,6 +81,7 @@ export class Home implements OnInit {
       this.isDevToolsOpen = false;
     }
   }
+  
   // --- HÀM TẢI VIDEO ---
   async download() {
     if (this.isDevToolsOpen) {
