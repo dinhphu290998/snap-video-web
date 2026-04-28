@@ -1,0 +1,114 @@
+.footer {
+  background: #0f172a;
+  color: #94a3b8;
+  margin-top: 60px;
+}
+
+/* container */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 16px;
+}
+
+/* TOP */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* BRAND */
+.brand {
+  max-width: 320px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.brand p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* LINKS */
+.links {
+  display: flex;
+  gap: 50px;
+}
+
+.links h4 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.links a {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: white;
+}
+
+/* divider */
+.divider {
+  height: 1px;
+  background: #1e293b;
+  margin: 30px 0;
+}
+
+/* bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+/* socials */
+.socials a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #94a3b8;
+}
+
+.socials a:hover {
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .footer-top {
+    flex-direction: column;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+}

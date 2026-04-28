@@ -1,0 +1,39 @@
+<header class="header">
+
+    <div class="container">
+
+        <!-- Logo -->
+        <div class="logo" routerLink="/">
+            <div class="logo" routerLink="/">
+                <img src="/favicon.ico" alt="logo" class="logo-img" />
+                <span>SnapVideo</span>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <nav class="menu">
+            <a routerLink="/tiktok-downloader" routerLinkActive="active">TikTok</a>
+            <a routerLink="/facebook-video-download" routerLinkActive="active">Facebook</a>
+            <a routerLink="/instagram-downloader" routerLinkActive="active">Instagram</a>
+            <a routerLink="/xiaohongshu-downloader" routerLinkActive="active">Xiaohongshu</a>
+        </nav>
+
+        <!-- CTA -->
+        <button class="cta">
+            Download
+        </button>
+
+        <!-- Mobile -->
+        <button class="mobile-btn" (click)="toggleMenu()">☰</button>
+
+    </div>
+
+    <!-- Mobile menu -->
+    <div *ngIf="isMenuOpen" class="mobile-menu">
+        <a routerLink="/tiktok-downloader" style="color: black;">TikTok</a>
+        <a routerLink="/facebook-video-download" style="color: rgb(0, 60, 255);">Facebook</a>
+        <a routerLink="/instagram-downloader" style="color: rgb(255, 36, 109);">Instagram</a>
+        <a routerLink="/xiaohongshu-downloader" style="color: red;">Xiaohongshu</a>
+    </div>
+
+</header>

@@ -1,0 +1,114 @@
+<div class="main-wrapper">
+    <div *ngIf="isDevToolsOpen" class="devtools-warning">
+        <div class="container">
+            <div class="error-card" style="margin-top: 100px; text-align: center;">
+                <h2>⚠️ Phát hiện Developer Tools!</h2>
+                <p>Vui lòng đóng bảng điều khiển (F12) để sử dụng tính năng tải video.</p>
+                <button (click)="checkConsole()" class="btn-primary" style="margin-top: 20px;">Tôi đã đóng, thử
+                    lại</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="!isDevToolsOpen">
+        <header class="hero">
+            <div class="container">
+                <div class="badge-container">
+                    <span class="badge">✨ Phiên bản 2026</span>
+                    <span class="badge">High Quality</span>
+                </div>
+
+                <h1>Tải Video Không Logo <br><span>Đa nền tảng</span></h1>
+
+                <p class="hero-subtitle">
+                    Tải video TikTok, Facebook, Instagram, Xiaohongshu chất lượng HD.
+                    Nhanh chóng - Miễn phí - Full HD.
+                </p>
+
+                <div class="download-container">
+                    <div class="input-group" [class.focus]="isFocused">
+                        <input type="text" [(ngModel)]="url" (focus)="isFocused = true" (blur)="isFocused = false"
+                            placeholder="Dán đường dẫn video tại đây..." />
+                        <button (click)="download()" [disabled]="loading" class="btn-primary">
+                            <span *ngIf="!loading">Tải Ngay</span>
+                            <span *ngIf="loading">Đang xử lý...</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="result-area" style="min-height: 100px;">
+            <div class="container">
+
+                <div *ngIf="loading" class="loading-state" style="text-align: center; padding: 40px;">
+                    <div class="spinner-modern"></div>
+                    <p style="color: var(--slate); margin-top: 15px; font-weight: 500;">Hệ thống đang trích xuất
+                        video...
+                    </p>
+                </div>
+
+                <div *ngIf="result && !loading" class="result-card-modern">
+                    <div class="res-thumb">
+                        <img [src]="result?.thumbnail || 'assets/placeholder.jpg'" alt="Video Thumbnail">
+                    </div>
+                    <div class="res-info">
+                        <span class="res-tag">✓ Đã tìm thấy video</span>
+
+                        <h2>{{ result?.title || 'Video No Title' }}</h2>
+
+                        <div class="res-actions">
+                            <ng-container *ngIf="result?.medias?.[0]?.url; else alternativeLink">
+                                <button type="button" class="download-link"
+                                    (click)="downloadVideo(result.medias[0].url, result?.title)">
+                                    🚀 Tải Video (Chất lượng cao)
+                                </button>
+                            </ng-container>
+
+                            <ng-template #alternativeLink>
+                                <p style="color:#ef4444;font-size:14px;">
+                                    Không lấy được link trực tiếp.
+                                </p>
+                            </ng-template>
+                            <ng-template #alternativeLink>
+                                <p style="color: #ef4444; font-size: 14px;">Không lấy được link trực tiếp.</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="error && !loading" class="error-card">
+                    <p>⚠️ {{ error }}</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="f-icon">⚡</div>
+                        <h3>Tốc độ cực nhanh</h3>
+                        <p>Xử lý và lấy link tải chỉ trong vài giây.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="f-icon">🎬</div>
+                        <h3>Chất lượng HD</h3>
+                        <p>Ưu tiên định dạng cao nhất lên đến 4K.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="f-icon">🛡️</div>
+                        <h3>An toàn 100%</h3>
+                        <p>Bảo mật dữ liệu, không cần đăng nhập.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="f-icon">✂️</div>
+                        <h3>Xóa Logo</h3>
+                        <p>Video sạch, không dính logo watermark.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+
+</div>
