@@ -1,104 +1,17 @@
-import crypto from 'crypto';
-
-// ================= SECURITY CONFIG =================
-const allowedOrigin = 'https://www.snapvideo.asia';
-
-// chống replay (demo memory)
-const usedNonce = new Set();
-
-// verify signature
-function verifyRequest(url, timestamp, nonce, signature) {
-    const SECRET = process.env.SERVER_SECRET;
-
-    console.log(SECRET);
-
-    if (!SECRET) return false;
-
-    // chống replay
-    if (usedNonce.has(nonce)) return false;
-    usedNonce.add(nonce);
-
-    // chống request cũ
-    if (Math.abs(Date.now() - timestamp) > 30000) return false;
-
-    const expected = crypto
-        .createHmac('sha256', SECRET)
-        .update(`${url}|${timestamp}|${nonce}`)
-        .digest('hex');
-
-    return expected === signature;
-}
-
-
 export default async function handler(req, res) {
-    // ================= CORS =================
-    const allowedOrigin = 'https://www.snapvideo.asia';
-
-    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    // 1. Cấu hình các Header để cho phép CORS
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Cho phép mọi nguồn (hoặc điền 'http://localhost:4200')
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-requested-with');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    // ================= PRE-FLIGHT =================
+    // 2. Xử lý yêu cầu Preflight (OPTIONS)
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
     try {
-
-        // ================= SECURITY LAYER (NEW - NOT TOUCH OLD LOGIC) =================
-
-        const origin = req.headers.origin;
-        const referer = req.headers.referer;
-        const ua = req.headers['user-agent'];
-
-        // chặn domain lạ
-        if (
-            origin !== allowedOrigin &&
-            (!referer || !referer.startsWith(allowedOrigin)) &&
-            (!ua || ua.length < 10)
-        ) {
-            return res.status(403).json({
-                error: 'Blocked request (security)'
-            });
-        }
-
-        // lấy input (GIỮ NGUYÊN CŨ + thêm field mới)
-        const { url, timestamp, nonce, signature } =
+        const { url } =
             req.method === 'POST' ? req.body : req.query;
-
-        if (!url) {
-            return res.status(400).json({ error: 'Missing url' });
-        }
-
-        // verify chống clone
-        if (!verifyRequest(url, timestamp, nonce, signature)) {
-            return res.status(403).json({
-                error: 'Invalid signature or replay detected'
-            });
-        }
-
-        // ================= TỪ ĐÂY GIỮ NGUYÊN CODE CỦA BẠN =================
-
-        // ================= DOMAIN CHECK =================
-        const isValidOrigin =
-            origin === allowedOrigin ||
-            (referer && referer.startsWith(allowedOrigin));
-
-        if (!isValidOrigin) {
-            return res.status(403).json({
-                error: 'Forbidden: Invalid origin'
-            });
-        }
-
-        // ================= BASIC BOT CHECK =================
-
-        if (!ua || ua.length < 10) {
-            return res.status(403).json({
-                error: 'Forbidden: Invalid client'
-            });
-        }
-
-        // ================= GET URL =================
 
         if (!url) {
             return res.status(400).json({ error: 'Missing url' });
@@ -123,6 +36,8 @@ export default async function handler(req, res) {
             const data = await fetchYoutube(link);
             if (data) return res.json(data);
         }
+
+        // ===== INSTAGRAM + XHS → fallback =====
 
         // ===== FALLBACK =====
         const data = await fetchFallback(link);
@@ -242,7 +157,7 @@ function extractYoutubeId(url) {
     return reg.exec(url)?.[1] || '';
 }
 
-// ================= FALLBACK =================
+// ================= FALLBACK (RETRY) =================
 async function fetchFallback(url) {
     const maxRetries = 5;
 
@@ -288,7 +203,7 @@ async function fetchFallback(url) {
     }
 }
 
-// ================= HEADERS =================
+// ================= RANDOM KEY =================
 function getHeaders() {
     const keys = process.env.RAPID_KEYS?.split(',') || [];
     const key = keys[Math.floor(Math.random() * keys.length)];
