@@ -37,7 +37,6 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
     this.updateSEO();
-    this.checkConsole();
   }
 
   isDevToolsOpen = false;
