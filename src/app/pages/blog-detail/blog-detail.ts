@@ -532,7 +532,7 @@ export class BlogDetail implements OnInit {
   `,
       category: 'Lemon8',
       date: '24/04/2026',
-      image: 'https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1000&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop'
     },
 
     {
@@ -700,7 +700,7 @@ export class BlogDetail implements OnInit {
   `,
       category: 'Update',
       date: '22/04/2026',
-      image: 'https://images.unsplash.com/photo-1516321310764-8d8c2d0d2c62?q=80&w=1000&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop'
     },
     {
       id: 16,
@@ -922,7 +922,7 @@ export class BlogDetail implements OnInit {
   `,
       category: 'Tips',
       date: '20/04/2026',
-      image: 'https://images.unsplash.com/photo-1516321310764-8d8c2d0d2c62?q=80&w=1000&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop'
     }
 
     // Tiếp tục tương tự đến id: 50
